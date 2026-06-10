@@ -1,0 +1,33 @@
+{
+  "skill_name": "plan-qa-test",
+  "notes": "Three targets spanning the proportionality spectrum (B0/B2/B3). With-skill vs baseline (no skill). Targets are READ-ONLY; deliverables (proposed qa-plan.md + findings + proposed configs/tests) go to the output dir. Eval 3 is the headline qualitative case: bootstrap on SplitLah's existing test env.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "greenfield-simple-lib-proportional",
+      "prompt": "Set up automated testing for this project (/tmp/pqa-eval/simple-lib). Give me a test plan and the test infrastructure it needs.",
+      "target": "/tmp/pqa-eval/simple-lib",
+      "expected_output": "A LEAN plan proportional to a pure-logic lib (B0/B1): static (lint/typecheck) + unit only. A short qa-plan.md (~10-20 lines). NO e2e, contract, live-eval, canary, evaluator-isolation, or migration tiers (none are earned). Unit tests use invariant + boundary assertions (e.g. truncate(max<0) throws; slugify idempotence). Must NOT over-engineer.",
+      "files": [],
+      "assertions": []
+    },
+    {
+      "id": 2,
+      "name": "greenfield-payments-api-scaleup",
+      "prompt": "Set up a test plan and the test infrastructure for this API (/tmp/pqa-eval/payments-api).",
+      "target": "/tmp/pqa-eval/payments-api",
+      "expected_output": "A B2 plan that scales UP appropriately: static + unit + integration (real Postgres incl. RLS/tenant-isolation) + contract test for the Stripe seam + build. ACs classified by environment (RLS=DB/INTEGRATION, Stripe charge=EXTERNAL-API, idempotency=DB). Money invariants gated (integer cents; amount_cents NOT NULL). Environment Matrix shows integration BLOCKED for prod (clean-state != prod-state). MUST NOT add agent-loop evaluator-isolation ceremony (no agent loop detected) — proportionality holds at the top end too.",
+      "files": [],
+      "assertions": []
+    },
+    {
+      "id": 3,
+      "name": "bootstrap-splitlah-qualitative",
+      "prompt": "Review our existing test environment for this app (/Users/nicholas/Desktop/Projects/splitlah-mvp) and tell me where it's structurally blind and how to harden QA for our autonomous Ralph coding loop. We have vitest unit + a real-DB integration tier + an opt-in OCR tier + a Playwright mobile smoke tier, but no written QA strategy.",
+      "target": "/Users/nicholas/Desktop/Projects/splitlah-mvp",
+      "expected_output": "BOOTSTRAP mode (existing tests, no qa-plan.md): reconstruct the real Environment Matrix from the 5 existing tiers; identify blind spots BY FAILURE-CLASS (state-drift from db-reset integration, device/render on mobile, synthetic-interaction, non-determinism for OCR); flag the prod-parity gap (authoring a migration != delivering it); note over-strict/flaky risks; conditional-HARD evaluator isolation + independent tier (agent loop + AI-judged OCR detected → B3); propose the FIRST docs/testing/qa-plan.md + a Closed-Gaps/Non-Determinism log; recommend next tiers only where a real/potential escape proves the gap. Treat splitlah as READ-ONLY; write the proposed plan + findings to the output dir.",
+      "files": [],
+      "assertions": []
+    }
+  ]
+}
