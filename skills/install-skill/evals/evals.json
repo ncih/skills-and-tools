@@ -1,0 +1,23 @@
+{
+  "skill_name": "install-skill",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Hey, can you install this skill for me? https://github.com/safishamsi/graphify",
+      "expected_output": "Agent should: (1) recognise the URL and call install.sh with it, (2) report the skill name and dest path, (3) run list-targets.sh and show output, (4) ask user which targets to symlink",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I have a skill at /tmp/test-dummy-skill/dummy-skill that I want to set up in my projects. Can you add it?",
+      "expected_output": "Agent should: (1) recognise no URL, ask about the path, (2) note it is outside MAIN_DIR, ask about migration, (3) if yes run install.sh --migrate, (4) run list-targets.sh, (5) ask which targets to symlink",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "The graphify skill is already installed in my Projects folder. Can you link it to workforce.ai and globally?",
+      "expected_output": "Agent should: (1) recognise no URL, skill already in MAIN_DIR so skip migration, (2) run link.sh for global, (3) run link.sh for workforce.ai, (4) confirm both done",
+      "files": []
+    }
+  ]
+}

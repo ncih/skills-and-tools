@@ -1,0 +1,9 @@
+{
+  "skill_name": "ralph-retro",
+  "note": "Self-contained: runs in a fresh session against the repo's ralph/logs + ralph/reviews ledger + git. Real exercise = run /ralph-retro after a loop batch; it reads local logs/git (gh optional for CI cross-ref).",
+  "evals": [
+    {"id": 1, "prompt": "Retro the latest Ralph run and tell me what we can improve.", "expected_output": "Runs scan.sh to find un-reviewed logs; evaluates each against the rubric (process/efficiency/correctness/guardrails) using runs.csv + git; proposes improvements routed to AGENTS.md/CONTEXT.md/PROMPT.md/ADR/script/backlog; applies only on approval; appends to ledger + writes archive review.", "files": []},
+    {"id": 2, "prompt": "How is the loop performing across the recent runs — any recurring problems?", "expected_output": "Reviews only un-reviewed logs, then surfaces cross-run patterns (recurring waste/failures, cost drift) from the ledger, ranked by impact; does not re-ingest old reviews.", "files": []},
+    {"id": 3, "prompt": "Do a post-run review and update our learnings so the next run is smarter.", "expected_output": "Per-run review + routes durable gotchas into AGENTS.md/CONTEXT.md (curated, deduped) and process changes into PROMPT/subagents on approval; records ledger + backlog; never pushes/closes/merges.", "files": []}
+  ]
+}

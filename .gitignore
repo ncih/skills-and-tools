@@ -1,0 +1,18 @@
+# Local configuration — never commit
+settings.local.json
+
+# Eval and dev workspaces
+install-skill-workspace/
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Obsidian workspace metadata (inside skills folder)
+**/.obsidian/
+
+# Packaged skill snapshots (local build artefacts)
+skills/_packaged/
+
+# Stray Obsidian folder inside skills/
+skills/skills/

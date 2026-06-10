@@ -1,0 +1,3 @@
+[submodule "graphify-repo"]
+	path = graphify-repo
+	url = https://github.com/safishamsi/graphify
