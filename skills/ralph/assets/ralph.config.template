@@ -1,0 +1,27 @@
+# ralph.config — per-project runtime config for the ralph skill.
+# Shell-sourced KEY=value file. Written into <repo>/ralph/ralph.config by
+# first-launch setup; read by ralph/loop-parallel.sh. Edit freely.
+
+# Branch the loop runs on (never main). The coordinator refuses to run on any
+# other branch, and pushes only this branch.
+RALPH_BRANCH=ralph
+
+# GitHub label marking issues that are ready for an agent to pick up.
+RALPH_READY_LABEL=ready-for-agent
+
+# Repo slug (owner/name). Left blank → detected at setup from
+# `gh repo view --json nameWithOwner -q .nameWithOwner`. Used in PROMPT.md.
+RALPH_GH_REPO=
+
+# Subagent names the orchestrator delegates to (must exist in .claude/agents/).
+# Defaults scaffolded by first-launch setup if the project lacks them.
+RALPH_PLANNER=planner
+RALPH_IMPLEMENTER=implementer
+
+# Set to true once first-launch setup has copied the default planner/implementer
+# agents into .claude/agents/ (so re-runs don't re-scaffold).
+RALPH_AGENTS_SCAFFOLDED=
+
+# NOTE: the project-specific gate commands (lint / typecheck / test) are NOT
+# stored here — they live in ralph/PROMPT.md under the "Code gate" section,
+# substituted in at setup time.

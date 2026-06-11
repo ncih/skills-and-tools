@@ -1,0 +1,9 @@
+{
+  "skill_name": "check-needs-human-verify",
+  "note": "Documents intended trigger/behaviour. A real run needs the live toolchain (gh auth, Docker, Supabase, dev server) and the installed `verify` skill, so exercise it by running /check-needs-human-verify in the real repo.",
+  "evals": [
+    {"id": 1, "prompt": "What do I need to check before I close anything on the backlog?", "expected_output": "Lists needs-human-verify issues; runs code+integration gates once; per issue uses the verify skill to confirm behaviour; gives plain-language verdict + numbered UAT to-do incl. supabase db push where needed; never closes/pushes prod.", "files": []},
+    {"id": 2, "prompt": "Is issue #19 safe to close yet?", "expected_output": "Reads #19 + checklist + CI for its commit, re-runs gates, invokes verify for behaviour, reports a verdict and the exact manual steps/commands for the user to run themselves.", "files": []},
+    {"id": 3, "prompt": "Go through everything waiting on me for verification and give me a report.", "expected_output": "Produces verify-report-<date>.md + in-chat summary, one block per issue (confirmed-automatically / your-to-do / recommendation), ends with a 'your move' command list. Does not close issues or push prod.", "files": []}
+  ]
+}
